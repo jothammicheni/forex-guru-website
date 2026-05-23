@@ -24,13 +24,13 @@ export default function AboutPage() {
                 About <span className="text-foreground">ForexGuru</span>
               </h1>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
+            <h2 className=" italic font-serif text-3xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
               Empowering Traders Worldwide
             </h2>
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto drop-shadow-lg">
               Discover the story behind ForexGuru and meet the mentor dedicated to transforming your trading journey.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className=" italic font-serif flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/membership"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground text-lg font-bold rounded hover:bg-accent transition transform hover:scale-105"
@@ -100,13 +100,13 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                <p className="text-muted-foreground leading-relaxed mb-4">
+                <p className="text-muted-foreground leading-relaxed mb-4 italic font-serif">
                   John started his trading journey over a decade ago, experiencing both massive losses and incredible wins. 
                   After losing his first three funded accounts, he developed a systematic approach that transformed his trading 
                   from gambling to professional strategy. Today, he manages multiple funded accounts and has helped over 500 
                   students achieve consistent profitability.
                 </p>
-                <p className="text-muted-foreground leading-relaxed mb-6">
+                <p className=" italic font-serif text-muted-foreground leading-relaxed mb-6">
                   "I created ForexGuru because I believe anyone can become a successful trader with the right education and 
                   mindset. Our curriculum isn't just about strategies—it's about building traders who can weather any market condition."
                 </p>
@@ -118,7 +118,7 @@ export default function AboutPage() {
                     <p className="text-xs text-muted-foreground">Students Mentored</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-primary">$2.5M+</p>
+                    <p className="text-2xl font-bold text-primary">$450k+</p>
                     <p className="text-xs text-muted-foreground">Prop Firm Capital</p>
                   </div>
                   <div className="text-center">
@@ -141,10 +141,10 @@ export default function AboutPage() {
                 <Target size={28} className="text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-4">Our Mission</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-muted-foreground leading-relaxed mb-4 italic font-serif">
                 To democratize professional forex trading education by making it accessible, actionable, and community-driven.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed italic font-serif">
                 We're committed to bridging the gap between theory and practice, ensuring every member develops the skills, 
                 confidence, and discipline needed to succeed in the forex market.
               </p>
@@ -155,10 +155,10 @@ export default function AboutPage() {
                 <Eye size={28} className="text-primary" />
               </div>
               <h2 className="text-2xl font-bold text-foreground mb-4">Our Vision</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+              <p className="text-muted-foreground leading-relaxed mb-4 italic font-serif">
                 To become the world's most trusted forex trading education platform, known for producing consistently profitable traders.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed italic font-serif">
                 We envision a global community where traders support each other, share insights, and grow together while achieving 
                 financial independence through disciplined trading.
               </p>
@@ -179,7 +179,7 @@ export default function AboutPage() {
                   <Heart size={22} className="text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Passion for Education</h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground italic font-serif">
                   We're genuinely passionate about teaching and seeing our students succeed. Every course is crafted with care.
                 </p>
               </div>
@@ -189,7 +189,7 @@ export default function AboutPage() {
                   <Shield size={22} className="text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Integrity First</h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground italic font-serif">
                   We teach what actually works. No fluff, no get-rich-quick promises—just proven, transparent strategies.
                 </p>
               </div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                   <Users size={22} className="text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Community First</h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground italic font-serif">
                   We believe in the power of community. Every member lifts others, creating an unbeatable support system.
                 </p>
               </div>
@@ -209,7 +209,7 @@ export default function AboutPage() {
                   <TrendingUp size={22} className="text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Continuous Growth</h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground italic font-serif">
                   Markets evolve, and so do we. Our curriculum is constantly updated with new strategies and insights.
                 </p>
               </div>
@@ -219,7 +219,7 @@ export default function AboutPage() {
                   <Award size={22} className="text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Excellence</h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground italic font-serif">
                   We hold ourselves to the highest standards, delivering premium education that produces real results.
                 </p>
               </div>
@@ -229,7 +229,7 @@ export default function AboutPage() {
                   <Lightbulb size={22} className="text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Innovation</h3>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground italic font-serif">
                   We embrace new technologies and teaching methods to enhance the learning experience.
                 </p>
               </div>

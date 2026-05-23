@@ -130,7 +130,7 @@ export default function ReviewsPage() {
           </p>
         
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className=" italic font-serif flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/membership"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground text-lg font-bold rounded hover:bg-accent transition transform hover:scale-105"
@@ -194,15 +194,6 @@ export default function ReviewsPage() {
                 </div>
               </div>
 
-              {/* Rating Summary Text */}
-              <div className="flex-1">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <p className="text-green-800 font-medium mb-1">⭐ Exceptional Rating</p>
-                  <p className="text-sm text-green-700">
-                    All reviews are from verified members who have completed our mentorship program.
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
 

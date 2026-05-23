@@ -107,14 +107,14 @@ export function Navbar() {
                     <span className="text-sm text-muted-foreground">Hi, {user.name}</span>
                     <Link
                       href="/my-plans"
-                      className="flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded hover:bg-accent transition"
+                      className="italic font-serif flex items-center gap-2 px-3 py-2 bg-primary text-primary-foreground rounded hover:bg-accent transition"
                     >
                       <User size={18} />
                       <span>My Plans</span>
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="flex items-center gap-2 px-3 py-2 bg-destructive/20 text-destructive rounded hover:bg-destructive/30 transition"
+                      className="italic font-serif flex items-center gap-2 px-3 py-2 bg-destructive/20 text-destructive rounded hover:bg-destructive/30 transition"
                     >
                       <LogOut size={18} />
                       <span>Logout</span>
@@ -123,7 +123,7 @@ export function Navbar() {
                 ) : (
                   <Link
                     href="/login"
-                    className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-accent transition"
+                    className="italic font-serif px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-accent transition"
                   >
                     Login
                   </Link>
@@ -133,7 +133,7 @@ export function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden text-foreground hover:text-primary transition z-50"
+                className="md:hidden text-foreground hover:text-primary transition z-50 italic font-serif"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -170,14 +170,14 @@ export function Navbar() {
                     <Link
                       href="/my-plans"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-accent transition"
+                      className="italic font-serif flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-accent transition"
                     >
                       <User size={18} />
                       My Plans
                     </Link>
                     <button
                       onClick={handleLogout}
-                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-destructive/20 text-destructive rounded-lg hover:bg-destructive/30 transition"
+                      className=" italic font-serif flex items-center justify-center gap-2 w-full px-4 py-3 bg-destructive/20 text-destructive rounded-lg hover:bg-destructive/30 transition"
                     >
                       <LogOut size={18} />
                       Logout

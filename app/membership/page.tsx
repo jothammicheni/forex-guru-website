@@ -35,18 +35,13 @@ export default function MembershipPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="italic font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
               Membership Plans
             </h1>
             <p className="text-xl text-muted-foreground">
               Choose the plan that best fits your trading journey
             </p>
-            <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-secondary rounded-full">
-              <DollarSign size={16} className="text-primary" />
-              <span className="text-sm text-muted-foreground">
-                Exchange Rate: 1 USD = {USD_TO_KSH} KSH
-              </span>
-            </div>
+           
           </div>
 
           {/* Plans Grid */}
@@ -72,7 +67,7 @@ export default function MembershipPage() {
 
                   {/* Plan Content */}
                   <div className="p-8">
-                    <h2 className="text-2xl font-bold text-foreground mb-2">{plan.name}</h2>
+                    <h2 className="text-2xl font-bold text-foreground mb-2 italic font-serif">{plan.name}</h2>
                     <p className="text-muted-foreground mb-6">{plan.description}</p>
 
                     {/* Price with KSH Equivalent */}
@@ -94,7 +89,7 @@ export default function MembershipPage() {
                     {/* CTA Button */}
                     <button
                       onClick={() => handleAddToCart(plan.id)}
-                      className={`w-full py-3 rounded font-bold transition mb-8 flex items-center justify-center gap-2 ${
+                      className={`italic font-serif w-full py-3 rounded font-bold transition mb-8 flex items-center justify-center gap-2 ${
                         plan.popular
                           ? 'bg-primary text-primary-foreground hover:bg-accent'
                           : 'bg-secondary text-foreground border border-primary hover:bg-primary/10'
@@ -126,7 +121,7 @@ export default function MembershipPage() {
 
           {/* Comparison Section */}
           <div className="bg-card border border-border rounded-lg p-8 mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+            <h2 className=" italic font-serif text-3xl font-bold text-foreground mb-8 text-center">
               Why Our Members Choose ForexGuru
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -159,7 +154,7 @@ export default function MembershipPage() {
 
           {/* FAQ Section */}
           <div className="bg-card border border-border rounded-lg p-8">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">
+            <h2 className="italic font-serif text-3xl font-bold text-foreground mb-8 text-center">
               Frequently Asked Questions
             </h2>
             <div className="space-y-6">
@@ -208,7 +203,7 @@ export default function MembershipPage() {
 
           {/* CTA Section */}
           <div className="mt-16 bg-secondary border border-border rounded-lg p-8 text-center">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
+            <h2 className="text-3xl font-bold text-foreground mb-4 italic font-serif">
               Ready to Transform Your Trading?
             </h2>
             <p className="text-muted-foreground mb-6">
@@ -217,13 +212,13 @@ export default function MembershipPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/cart"
-                className="px-8 py-3 bg-primary text-primary-foreground rounded font-bold hover:bg-accent transition"
+                className="italic font-serif px-8 py-3 bg-primary text-primary-foreground rounded font-bold hover:bg-accent transition"
               >
                 View Cart
               </Link>
               <Link
                 href="/"
-                className="px-8 py-3 bg-card border border-primary text-foreground rounded font-bold hover:bg-primary/10 transition"
+                className="italic font-serif px-8 py-3 bg-card border border-primary text-foreground rounded font-bold hover:bg-primary/10 transition"
               >
                 Back to Home
               </Link>

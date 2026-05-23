@@ -205,13 +205,13 @@ export default function Home() {
               ForexGuru
             </h1>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
+          <h2 className="italic font-serif text-3xl md:text-5xl font-bold text-foreground mb-6 drop-shadow-lg">
             Kickstart Your Trading Journey
           </h2>
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto drop-shadow-lg">
             Join the best trading community to better your results. Learn proven strategies from experienced mentors and build the confidence to trade professionally.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center italic font-serif">
             <Link
               href="/membership"
               className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground text-lg font-bold rounded hover:bg-accent transition transform hover:scale-105"
@@ -254,7 +254,7 @@ export default function Home() {
       <section className=" bg-secondary bg-card py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Choose Your Path to Success</h2>
+            <h2 className="text-4xl font-bold text-foreground mb-4 italic font-serif">Choose Your Path to Success</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Select the package that fits your goals and start your trading journey today
             </p>
@@ -284,7 +284,7 @@ export default function Home() {
 
                   <div className="p-6 md:p-8">
                     {/* Plan Name */}
-                    <h3 className="text-2xl font-bold text-foreground mb-2">{plan.name}</h3>
+                    <h3 className="italic font-serif text-2xl font-bold text-foreground mb-2">{plan.name}</h3>
                     <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
 
                     {/* Price */}
@@ -312,7 +312,7 @@ export default function Home() {
                     {/* Read More Button - Redirects to /membership */}
                     <Link href="/membership">
                       <button
-                        className={`w-full py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 ${
+                        className={`italic font-serif w-full py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 ${
                           plan.popular
                             ? 'bg-primary text-primary-foreground hover:bg-accent shadow-md'
                             : 'bg-secondary text-foreground border border-primary hover:bg-primary/10'
@@ -340,7 +340,7 @@ export default function Home() {
       {/* Features Section */}
       <section className="bg-secondary py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center text-foreground mb-12">Why Choose ForexGuru?</h2>
+          <h2 className="text-4xl font-bold text-center text-foreground mb-12 italic font-serif">Why Choose ForexGuru?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-6 bg-card rounded-lg border border-border">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
@@ -381,7 +381,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-2 mb-4">
               <GoogleIcon />
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              <h2 className=" italic font-serif text-3xl md:text-4xl font-bold text-foreground">
                 Google Reviews
               </h2>
             </div>
@@ -493,7 +493,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="bg-secondary py-16 md:py-24">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl font-bold text-foreground mb-6">Ready to Start Your Trading Journey?</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-6 italic font-serif">Ready to Start Your Trading Journey?</h2>
           <p className="text-xl text-muted-foreground mb-8">
             Choose from our flexible membership plans and join hundreds of successful traders.
           </p>
