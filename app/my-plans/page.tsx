@@ -7,36 +7,20 @@ import { getCurrentUser } from '@/lib/auth';
 import { supabase } from '@/lib/supabase/client';
 import { ArrowLeft, CheckCircle, Phone, MessageCircle, ExternalLink, Calendar, Award } from 'lucide-react';
 
-interface Subscription {
-  id: string;
-  user_id: string;
-  user_name: string;
-  user_email: string;
-  user_phone: string;
-  plan_id: string;
-  plan_name: string;
-  plan_price: number;
-  amount_paid: number;
-  payment_method: string;
-  payment_ref: string;
-  status: string;
-  type: string;
-  purchased_at: string;
-  expires_at: string | null;
-  never_expires: boolean;
-}
-
 interface Payment {
   id: string;
   plan_title: string;
+  plan_id: string;
   amount: number;
   status: string;
   created_at: string;
+  payment_method: string;
+  customer_name: string;
+  customer_email: string;
 }
 
 export default function MyPlansPage() {
   const [user, setUser] = useState<any>(null);
-  const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [payments, setPayments] = useState<Payment[]>([]);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -54,21 +38,7 @@ export default function MyPlansPage() {
   const fetchUserData = async (email: string) => {
     setLoading(true);
     try {
-      // Fetch subscriptions from Supabase
-      const { data: subscriptionsData, error: subscriptionsError } = await supabase
-        .from('user_subscriptions')
-        .select('*')
-        .eq('user_email', email)
-        .eq('status', 'active')
-        .order('purchased_at', { ascending: false });
-
-      if (subscriptionsError) {
-        console.error('Error fetching subscriptions:', subscriptionsError);
-      } else {
-        setSubscriptions(subscriptionsData || []);
-      }
-
-      // Fetch payment history
+      // Fetch completed payments from Supabase - these are your active subscriptions
       const { data: paymentsData, error: paymentsError } = await supabase
         .from('payments')
         .select('*')
@@ -108,7 +78,8 @@ export default function MyPlansPage() {
     );
   }
 
-  const hasActivePlan = subscriptions.length > 0;
+  const hasActivePlan = payments.length > 0;
+  const latestPlan = payments.length > 0 ? payments[0] : null;
 
   return (
     <div className="min-h-screen bg-background py-16 px-4">
@@ -142,13 +113,13 @@ export default function MyPlansPage() {
             <div>
               <p className="text-muted-foreground mb-2">Member Since</p>
               <p className="text-xl font-bold text-foreground">
-                {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
+                {payments.length > 0 ? new Date(payments[payments.length - 1].created_at).toLocaleDateString() : 'N/A'}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Active Plans Section */}
+        {/* Active Plans Section - Derived from Payments */}
         <div className="bg-card border border-border rounded-lg p-8 mb-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Active Subscriptions</h2>
           
@@ -166,27 +137,27 @@ export default function MyPlansPage() {
             </div>
           ) : (
             <div className="space-y-6">
-              {subscriptions.map((sub) => (
-                <div key={sub.id} className="bg-secondary border border-border rounded-lg p-6">
+              {payments.map((payment) => (
+                <div key={payment.id} className="bg-secondary border border-border rounded-lg p-6">
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
                     <div>
                       <div className="flex items-center gap-2 mb-2">
                         <CheckCircle size={20} className="text-green-500" />
-                        <h3 className="text-xl font-bold text-foreground">{sub.plan_name}</h3>
+                        <h3 className="text-xl font-bold text-foreground">{payment.plan_title}</h3>
                         <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
-                          {sub.type === 'lifetime' ? 'Lifetime Access' : 'Active'}
+                          Lifetime Access
                         </span>
                       </div>
                       <p className="text-muted-foreground text-sm">
-                        Purchased on {new Date(sub.purchased_at).toLocaleDateString()}
+                        Purchased on {new Date(payment.created_at).toLocaleDateString()}
                       </p>
                     </div>
                     <div className="flex flex-col items-end">
                       <p className="text-2xl font-bold text-primary">
-                        KES {sub.amount_paid.toLocaleString()}
+                        KES {payment.amount.toLocaleString()}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        Paid via {sub.payment_method}
+                        Paid via {payment.payment_method === 'mpesa' ? 'M-Pesa' : payment.payment_method || 'Card'}
                       </p>
                     </div>
                   </div>
@@ -194,7 +165,7 @@ export default function MyPlansPage() {
                   <div className="border-t border-border pt-4 mt-2">
                     <div className="flex flex-col sm:flex-row gap-3">
                       <button
-                        onClick={() => handleWhatsAppContact(sub.plan_name)}
+                        onClick={() => handleWhatsAppContact(payment.plan_title)}
                         className="flex items-center justify-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
                       >
                         <MessageCircle size={18} />
@@ -218,44 +189,6 @@ export default function MyPlansPage() {
           )}
         </div>
 
-        {/* Payment History */}
-        {payments.length > 0 && (
-          <div className="bg-card border border-border rounded-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Payment History</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-border">
-                    <th className="text-left py-3 text-muted-foreground font-semibold">Date</th>
-                    <th className="text-left py-3 text-muted-foreground font-semibold">Plan</th>
-                    <th className="text-left py-3 text-muted-foreground font-semibold">Amount</th>
-                    <th className="text-left py-3 text-muted-foreground font-semibold">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {payments.map((payment) => (
-                    <tr key={payment.id} className="border-b border-border">
-                      <td className="py-3 text-foreground">
-                        {new Date(payment.created_at).toLocaleDateString()}
-                      </td>
-                      <td className="py-3 text-foreground">{payment.plan_title}</td>
-                      <td className="py-3 text-primary font-semibold">
-                        KES {payment.amount.toLocaleString()}
-                      </td>
-                      <td className="py-3">
-                        <span className="inline-flex items-center gap-1 text-green-500">
-                          <CheckCircle size={14} />
-                          Completed
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        )}
-
         {/* Learning Resources */}
         <div className="bg-card border border-border rounded-lg p-8">
           <h2 className="text-2xl font-bold text-foreground mb-6">Learning Resources</h2>
@@ -267,7 +200,7 @@ export default function MyPlansPage() {
               </p>
               <button 
                 disabled={!hasActivePlan}
-                className={`px-4 py-2 rounded text-sm font-bold transition ${
+                className={`w-full px-4 py-2 rounded text-sm font-bold transition ${
                   hasActivePlan 
                     ? 'bg-primary text-primary-foreground hover:bg-accent cursor-pointer' 
                     : 'bg-secondary border border-border text-muted-foreground cursor-not-allowed'
@@ -283,7 +216,7 @@ export default function MyPlansPage() {
               </p>
               <button 
                 disabled={!hasActivePlan}
-                className={`px-4 py-2 rounded text-sm font-bold transition ${
+                className={`w-full px-4 py-2 rounded text-sm font-bold transition ${
                   hasActivePlan 
                     ? 'bg-primary text-primary-foreground hover:bg-accent cursor-pointer' 
                     : 'bg-secondary border border-border text-muted-foreground cursor-not-allowed'
@@ -299,7 +232,7 @@ export default function MyPlansPage() {
               </p>
               <button 
                 disabled={!hasActivePlan}
-                className={`px-4 py-2 rounded text-sm font-bold transition ${
+                className={`w-full px-4 py-2 rounded text-sm font-bold transition ${
                   hasActivePlan 
                     ? 'bg-primary text-primary-foreground hover:bg-accent cursor-pointer' 
                     : 'bg-secondary border border-border text-muted-foreground cursor-not-allowed'
@@ -314,7 +247,7 @@ export default function MyPlansPage() {
                 Get personalized support from your dedicated mentor.
               </p>
               <button 
-                onClick={() => hasActivePlan && handleWhatsAppContact(subscriptions[0]?.plan_name || 'Plan')}
+                onClick={() => hasActivePlan && latestPlan && handleWhatsAppContact(latestPlan.plan_title)}
                 disabled={!hasActivePlan}
                 className={`flex items-center justify-center gap-2 w-full px-4 py-2 rounded text-sm font-bold transition ${
                   hasActivePlan 
