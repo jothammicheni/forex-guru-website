@@ -28,7 +28,7 @@ export const PLANS: Plan[] = [
     id: 'silver',
     name: 'Silver Plan',
     price: 47,
-    duration: 'Monthly',
+    duration: 'Lifetime',
     description: 'Perfect for beginners',
     features: [
       'Member dashboard access',
@@ -49,7 +49,7 @@ export const PLANS: Plan[] = [
     id: 'gold',
     name: 'Gold Plan',
     price: 127,
-    duration: 'Quarterly',
+    duration: 'Lifetime',
     description: 'Best value for serious traders',
     features: [
       'All Silver benefits',

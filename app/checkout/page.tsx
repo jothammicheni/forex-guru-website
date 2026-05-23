@@ -256,7 +256,7 @@ export default function CheckoutPage() {
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
                           <img 
-                            src="/binance.png" 
+                            src="/crypto.png" 
                             alt="Binance" 
                             className="w-8 h-8" 
                             onError={(e) => {
@@ -385,7 +385,7 @@ export default function CheckoutPage() {
                       const target = e.target as HTMLImageElement;
                       target.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/256px-Mastercard-logo.svg.png';
                     }} />
-                    <img src="/binance.png" alt="Binance" className="h-6 w-auto opacity-60" onError={(e) => {
+                    <img src="/crypto.png" alt="Binance" className="h-6 w-auto opacity-60" onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Binance_logo.svg/256px-Binance_logo.svg.png';
                     }} />
