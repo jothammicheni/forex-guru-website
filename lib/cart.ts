@@ -1,5 +1,5 @@
 // Shopping cart management
-
+//lib/cart.ts
 export interface Plan {
   id: string;
   name: string;

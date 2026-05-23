@@ -7,7 +7,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="bg-secondary border-t border-border">
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
@@ -133,11 +133,11 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone size={16} className="text-primary flex-shrink-0" />
-                <span>+1 (555) 123-4567</span>
+                <span>+254701519280</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin size={16} className="text-primary flex-shrink-0" />
-                <span>123 Trading Street, Financial District, New York, NY 10005</span>
+                <span>Westlands, Nairobi</span>
               </div>
             </div>
             

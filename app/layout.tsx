@@ -4,9 +4,10 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
+import { FloatingWhatsApp } from '@/components/floating-whatsapp';
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geist = Geist({ subsets: ["latin"] });
+const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'ForexGuru - Master Your Trading',
@@ -47,9 +48,11 @@ export default function RootLayout({
         `}</style>
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
-        <Navbar/>
+        <Navbar />
         {children}
         <Footer />
+        <FloatingWhatsApp />
+        <Analytics />
       </body>
     </html>
   )

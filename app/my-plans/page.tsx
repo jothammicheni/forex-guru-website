@@ -100,19 +100,19 @@ export default function MyPlansPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <p className="text-muted-foreground mb-2">Full Name</p>
-              <p className="text-xl font-bold text-foreground">{user?.name}</p>
+              <p className="text-sm font-bold text-foreground">{user?.name}</p>
             </div>
             <div>
               <p className="text-muted-foreground mb-2">Email Address</p>
-              <p className="text-xl font-bold text-foreground">{user?.email}</p>
+              <p className="text-sm font-bold text-foreground">{user?.email}</p>
             </div>
             <div>
               <p className="text-muted-foreground mb-2">Phone Number</p>
-              <p className="text-xl font-bold text-foreground">{user?.phone}</p>
+              <p className="text-sm font-bold text-foreground">{user?.phone}</p>
             </div>
             <div>
               <p className="text-muted-foreground mb-2">Member Since</p>
-              <p className="text-xl font-bold text-foreground">
+              <p className="text-sm font-bold text-foreground">
                 {payments.length > 0 ? new Date(payments[payments.length - 1].created_at).toLocaleDateString() : 'N/A'}
               </p>
             </div>
@@ -206,7 +206,7 @@ export default function MyPlansPage() {
                     : 'bg-secondary border border-border text-muted-foreground cursor-not-allowed'
                 }`}
               >
-                {hasActivePlan ? 'Ongoing' : 'Subscribe to Access'}
+                {hasActivePlan ? 'DownLoad' : 'Subscribe to Access'}
               </button>
             </div>
             <div className="bg-secondary border border-border rounded-lg p-6">
@@ -222,7 +222,7 @@ export default function MyPlansPage() {
                     : 'bg-secondary border border-border text-muted-foreground cursor-not-allowed'
                 }`}
               >
-                {hasActivePlan ? 'Ongoing' : 'Subscribe to Access'}
+                {hasActivePlan ? 'Click To Join Telegramm Community' : 'Subscribe to Access'}
               </button>
             </div>
             <div className="bg-secondary border border-border rounded-lg p-6">

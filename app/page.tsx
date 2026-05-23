@@ -1,8 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, TrendingUp, Users, Award, ChevronLeft, ChevronRight, Star, ThumbsUp, Flag, MoreHorizontal } from 'lucide-react';
+import { ArrowRight, TrendingUp, Users, Award, ChevronLeft, ChevronRight, Star, ThumbsUp, Flag, MoreHorizontal, Check } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { PLANS } from '@/lib/cart'; // Import packages from cart
+
+// Exchange rate
+const USD_TO_KSH = 129;
+const convertToKSH = (usd: number) => Math.round(usd * USD_TO_KSH);
 
 const testimonials = [
   {
@@ -16,7 +21,7 @@ const testimonials = [
   },
   {
     name: 'Wambui K',
-    text: 'Learning Trading from Rick @ Clinical Forex has been worth my time and money. Everything is explained so well and the course material is well organized and relevant. I would definitely recommend to anyone.',
+    text: 'Learning Trading from Rick @ Forex Gurui has been worth my time and money. Everything is explained so well and the course material is well organized and relevant. I would definitely recommend to anyone.',
     rating: 4,
     date: '1 month ago',
     avatar: 'W',
@@ -224,32 +229,120 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-secondary py-16 md:py-24">
+    
+      {/* Motivational Paragraph Section - Unique Fonts */}
+      <section className="bg-secondary py-20 md:py-28">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="mb-6 inline-block px-4 py-1 bg-primary/20 rounded-full">
+            <span className="text-primary font-mono text-sm tracking-wider">MINDSET MATTERS</span>
+          </div>
+          <blockquote className="relative">
+            <p className="text-3xl md:text-5xl lg:text-6xl font-bold italic font-serif tracking-tight text-foreground leading-tight">
+              "The market rewards discipline, not emotion. 
+              <span className="text-primary block mt-3 md:mt-4">Master your psychology, master your future."</span>
+            </p>
+            <footer className="mt-6 md:mt-8">
+              <p className="text-lg md:text-xl text-muted-foreground font-light tracking-wide">
+                — Your journey to consistent profits starts with the right mindset
+              </p>
+            </footer>
+          </blockquote>
+        </div>
+      </section>
+
+      {/* Packages Section - 3 packages with 4 features each + Read More */}
+      <section className=" bg-secondary bg-card py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Choose Your Path to Success</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Select the package that fits your goals and start your trading journey today
+            </p>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">500+</div>
-              <p className="text-foreground text-lg">Active Traders</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">98%</div>
-              <p className="text-foreground text-lg">Satisfaction Rate</p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">24/5</div>
-              <p className="text-foreground text-lg">Support Available</p>
-            </div>
+            {PLANS.map((plan) => {
+              const kshPrice = convertToKSH(plan.price);
+              // Take only first 4 features for display
+              const displayedFeatures = plan.features.slice(0, 4);
+              
+              return (
+                <div
+                  key={plan.id}
+                  className={`relative rounded-xl transition-all duration-300 hover:-translate-y-2 ${
+                    plan.popular
+                      ? 'border-2 border-primary bg-gradient-to-b from-card to-secondary shadow-xl'
+                      : 'border border-border bg-card hover:shadow-lg'
+                  }`}
+                >
+                  {/* Popular Badge */}
+                  {plan.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-sm font-bold shadow-lg z-10">
+                      🔥 Most Popular
+                    </div>
+                  )}
+
+                  <div className="p-6 md:p-8">
+                    {/* Plan Name */}
+                    <h3 className="text-2xl font-bold text-foreground mb-2">{plan.name}</h3>
+                    <p className="text-muted-foreground text-sm mb-4">{plan.description}</p>
+
+                    {/* Price */}
+                    <div className="mb-6">
+                      <div className="flex items-baseline gap-1">
+                        <span className="text-4xl font-bold text-primary">${plan.price}</span>
+                        <span className="text-muted-foreground">/{plan.duration}</span>
+                      </div>
+                      <div className="mt-2 text-sm">
+                        <span className="font-semibold text-primary">KSH {kshPrice.toLocaleString()}</span>
+                        <span className="text-muted-foreground">/{plan.duration.toLowerCase()}</span>
+                      </div>
+                    </div>
+
+                    {/* Features - 4 items only */}
+                    <div className="space-y-3 mb-8">
+                      {displayedFeatures.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <Check size={18} className="text-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Read More Button - Redirects to /membership */}
+                    <Link href="/membership">
+                      <button
+                        className={`w-full py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 ${
+                          plan.popular
+                            ? 'bg-primary text-primary-foreground hover:bg-accent shadow-md'
+                            : 'bg-secondary text-foreground border border-primary hover:bg-primary/10'
+                        }`}
+                      >
+                        <span>Read More</span>
+                        <ArrowRight size={16} />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          
+          {/* Additional Info */}
+          <div className="text-center mt-10">
+            <p className="text-muted-foreground text-sm">
+              All plans include access to our private community and 24/5 support
+            </p>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="bg-card py-16 md:py-24">
+      <section className="bg-secondary py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-foreground mb-12">Why Choose ForexGuru?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 bg-secondary rounded-lg border border-border">
+            <div className="p-6 bg-card rounded-lg border border-border">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
                 <TrendingUp size={24} className="text-primary-foreground" />
               </div>
@@ -258,7 +351,7 @@ export default function Home() {
                 Learn our exact prop firm pass strategy with back-tested data and documented playbooks.
               </p>
             </div>
-            <div className="p-6 bg-secondary rounded-lg border border-border">
+            <div className="p-6 bg-card rounded-lg border border-border">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
                 <Users size={24} className="text-primary-foreground" />
               </div>
@@ -267,7 +360,7 @@ export default function Home() {
                 Join 500+ traders in our private community with live sessions and Q&A support.
               </p>
             </div>
-            <div className="p-6 bg-secondary rounded-lg border border-border">
+            <div className="p-6 bg-card rounded-lg border border-border">
               <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
                 <Award size={24} className="text-primary-foreground" />
               </div>
@@ -372,17 +465,28 @@ export default function Home() {
             </div>
           )}
 
-          {/* Write a review CTA */}
-          <div className="text-center mt-12">
-            <button className="inline-flex items-center gap-2 px-6 py-2.5 border border-gray-300 rounded-full text-sm font-medium text-gray-200 hover:bg-white/10 transition">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 2L22 4L20 6L18 4L20 2Z" fill="#9CA3AF"/>
-                <path d="M4 20L14 10L16 12L6 22L4 20Z" fill="#9CA3AF"/>
-                <path d="M3 21L5 20L4 19L3 21Z" fill="#9CA3AF"/>
-              </svg>
-              Write a review on Google
-            </button>
+            {/* Stats Section */}
+      <section className="bg-secondary py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">500+</div>
+              <p className="text-foreground text-lg">Active Traders</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">98%</div>
+              <p className="text-foreground text-lg">Satisfaction Rate</p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-bold text-primary mb-2">24/5</div>
+              <p className="text-foreground text-lg">Support Available</p>
+            </div>
           </div>
+        </div>
+      </section>
+
+
+        
         </div>
       </section>
 
@@ -403,12 +507,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-card border-t border-border py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center text-muted-foreground">
-          <p>&copy; 2024 ForexGuru. All rights reserved. | Privacy Policy | Terms of Service</p>
-        </div>
-      </footer>
+   
     </>
   );
 }
